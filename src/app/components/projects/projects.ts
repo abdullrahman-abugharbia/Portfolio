@@ -31,9 +31,9 @@ export class Projects {
     },
     {
       title: 'Fluffy Pet – E-Commerce Web Application',
-      label: 'Academic Project',
-      description: 'Team-based e-commerce web application with customer registration, cart management, API integration, and frontend-backend communication.',
-      tags: ['C#', 'ASP.NET', 'Angular', 'Bootstrap', 'SQL Server'],
+      label: 'Academic Project · In Progress',
+      description: 'Team-based academic e-commerce web application, currently in development.',
+      tags: ['C#', 'ASP.NET', 'Angular', 'Bootstrap'],
       gradientFrom: '#1a1040',
       gradientTo: '#2d1b69',
       icon: 'bi-shop',
