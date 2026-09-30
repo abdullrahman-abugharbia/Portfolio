@@ -47,15 +47,17 @@
 }
 
 .skill-icon-wrapper {
-  width: 56px;
+  min-width: 56px;
   height: 56px;
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 6px;
 
-  svg {
+  img {
     width: 36px;
     height: 36px;
+    object-fit: contain;
   }
 }
 

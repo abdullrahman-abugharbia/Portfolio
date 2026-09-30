@@ -20,7 +20,11 @@
       @for (skill of filteredSkills; track skill.name) {
         <div class="col-lg-3 col-md-4 col-sm-6">
           <div class="skill-card">
-            <div class="skill-icon-wrapper" [innerHTML]="skill.svg"></div>
+            <div class="skill-icon-wrapper">
+              @for (icon of skill.icons; track icon) {
+                <img [src]="'icons/' + icon + '.svg'" alt="" width="36" height="36">
+              }
+            </div>
             <span class="skill-name">{{ skill.name }}</span>
           </div>
         </div>
