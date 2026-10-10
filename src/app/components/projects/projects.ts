@@ -22,7 +22,7 @@ export class Projects {
     {
       title: 'ARP Peptide – Live Website',
       label: 'Published Website',
-      description: 'Contributed to the development and publication of a live research-peptide website during my web development internship, taking the work from implementation through to a publicly accessible site.',
+      description: 'Contributed to the development and publication of a live research-peptide website during my remote web development internship at max-level-ksa, taking the work from implementation through to a publicly accessible site.',
       tags: ['AI-Assisted Development', 'Web Development', 'Live Website'],
       gradientFrom: '#001b44',
       gradientTo: '#002f6c',
