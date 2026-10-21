@@ -1,0 +1,120 @@
+.contact {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  align-items: center;
+  gap: clamp(2rem, 5vw, 4rem);
+  padding: clamp(1.75rem, 6vw, 4.5rem);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.contact__bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 0% 0%, color-mix(in srgb, var(--primary-dark) 75%, transparent), transparent 45%),
+    linear-gradient(var(--grid-line) 1px, transparent 1px) 0 0 / 48px 48px,
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px) 0 0 / 48px 48px;
+  mask-image: linear-gradient(to right, #000, transparent 75%);
+}
+
+.contact__intro,
+.channels {
+  position: relative;
+}
+
+.contact__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 2rem;
+}
+
+.contact__location {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+
+  .bi {
+    color: var(--primary);
+  }
+}
+
+.channels {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.channel {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--card);
+  transition: border-color var(--duration) ease, transform var(--duration) ease, box-shadow var(--duration) ease;
+
+  &:hover {
+    border-color: var(--primary-border);
+    box-shadow: var(--shadow);
+    transform: translateY(-1px);
+
+    .channel__arrow {
+      color: var(--primary);
+      transform: translate(2px, -2px);
+    }
+  }
+}
+
+.channel__text {
+  display: grid;
+  min-width: 0;
+  flex: 1;
+}
+
+.channel__label {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-subtle);
+}
+
+.channel__value {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 0.9375rem;
+  font-weight: 500;
+}
+
+.channel__arrow {
+  color: var(--text-subtle);
+  transition: color var(--duration) ease, transform var(--duration) ease;
+}
+
+@media (max-width: 960px) {
+  .contact {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact__actions .btn {
+    flex: 1 1 100%;
+  }
+
+  .channel {
+    padding: 0.8rem;
+    gap: 0.8rem;
+  }
+}

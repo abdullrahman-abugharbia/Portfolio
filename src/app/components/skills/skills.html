@@ -1,33 +1,37 @@
-<section class="skills-section" id="skills">
+<section class="section section--band" id="skills" aria-labelledby="skills-title">
   <div class="container">
-    <h2 class="section-title">Skills</h2>
-    <div class="section-divider"></div>
+    <header class="section-header" appReveal>
+      <p class="eyebrow">Skills</p>
+      <h2 class="section-title" id="skills-title">Technical skills</h2>
+      <p class="section-lead">
+        The tools I use to build full-stack web applications, from the database to the browser.
+      </p>
+    </header>
 
-    <!-- Category Filter -->
-    <div class="skills-filter d-flex gap-2 flex-wrap mb-5">
-      @for (cat of categories; track cat) {
-        <button
-          class="filter-btn"
-          [class.active]="activeCategory === cat"
-          (click)="setCategory(cat)">
-          {{ cat }}
-        </button>
-      }
-    </div>
-
-    <!-- Skills Grid -->
-    <div class="row g-4">
-      @for (skill of filteredSkills; track skill.name) {
-        <div class="col-lg-3 col-md-4 col-sm-6">
-          <div class="skill-card">
-            <div class="skill-icon-wrapper">
-              @for (icon of skill.icons; track icon) {
-                <img [src]="'icons/' + icon + '.svg'" alt="" width="36" height="36">
-              }
+    <div class="skills-grid">
+      @for (group of groups; track group.title; let i = $index) {
+        <article class="skill-card card" appReveal [style.--reveal-delay]="i * 0.06 + 's'">
+          <header class="skill-card__header">
+            <span class="icon-box"><i class="bi {{ group.icon }}" aria-hidden="true"></i></span>
+            <div>
+              <h3>{{ group.title }}</h3>
+              <p>{{ group.summary }}</p>
             </div>
-            <span class="skill-name">{{ skill.name }}</span>
-          </div>
-        </div>
+          </header>
+          <ul class="skill-list">
+            @for (skill of group.skills; track skill.name) {
+              <li>
+                @if (skill.logo) {
+                  <img class="tech-icon" [class.tech-icon--mono]="skill.mono" [src]="'icons/' + skill.logo + '.svg'"
+                    alt="" width="16" height="16" loading="lazy">
+                } @else {
+                  <i class="bi {{ skill.bi }} skill-list__bi" aria-hidden="true"></i>
+                }
+                {{ skill.name }}
+              </li>
+            }
+          </ul>
+        </article>
       }
     </div>
   </div>

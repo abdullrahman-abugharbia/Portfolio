@@ -1,33 +1,49 @@
-<nav class="navbar navbar-expand-lg fixed-top" [class.scrolled]="isScrolled">
-  <div class="container">
-    <a class="navbar-brand brand-logo" href="#">
-      <span class="brand-icon">A</span>
-      <span class="brand-text">Abdullrahman</span>
+<header class="nav-shell" [class.is-scrolled]="isScrolled()" [class.is-open]="menuOpen()">
+  <nav class="nav" aria-label="Primary">
+    <a class="brand" href="#home" (click)="closeMenu()" aria-label="{{ profile.name }}, back to top">
+      <span class="brand__mark" aria-hidden="true">A</span>
+      <span class="brand__name">{{ profile.shortName }}</span>
     </a>
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-      data-bs-target="#navbarNav" aria-controls="navbarNav"
-      aria-expanded="false" aria-label="Toggle navigation">
-      <span class="toggler-icon">
-        <i class="bi bi-list"></i>
-      </span>
-    </button>
+    <ul class="nav__links">
+      @for (link of links; track link.id) {
+        <li>
+          <a class="nav__link" [href]="'#' + link.id" [class.is-active]="activeId() === link.id"
+            [attr.aria-current]="activeId() === link.id ? 'location' : null">{{ link.label }}</a>
+        </li>
+      }
+    </ul>
 
-    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-      <ul class="navbar-nav align-items-center gap-1">
-        <li class="nav-item">
-          <a class="nav-link" href="#work">Work</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#about">About</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#skills">Skills</a>
-        </li>
-        <li class="nav-item ms-2">
-          <a href="#contact" class="btn-accent">Contact Me</a>
-        </li>
-      </ul>
+    <div class="nav__actions">
+      <button class="btn-icon" type="button" (click)="theme.toggle()"
+        [attr.aria-label]="theme.theme() === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'">
+        <i class="bi" [class.bi-sun]="theme.theme() === 'dark'" [class.bi-moon-stars]="theme.theme() === 'light'" aria-hidden="true"></i>
+      </button>
+      <a class="btn btn-primary btn-sm nav__cv" [href]="profile.cv" download>
+        <i class="bi bi-download" aria-hidden="true"></i> Download CV
+      </a>
+      <button class="btn-icon nav__toggle" type="button" (click)="toggleMenu()"
+        aria-controls="mobile-menu" [attr.aria-expanded]="menuOpen()"
+        [attr.aria-label]="menuOpen() ? 'Close menu' : 'Open menu'">
+        <i class="bi" [class.bi-list]="!menuOpen()" [class.bi-x-lg]="menuOpen()" aria-hidden="true"></i>
+      </button>
     </div>
-  </div>
-</nav>
+  </nav>
+
+  @if (menuOpen()) {
+    <div class="mobile-menu" id="mobile-menu">
+      <ul>
+        @for (link of links; track link.id) {
+          <li>
+            <a class="mobile-menu__link" [href]="'#' + link.id" [class.is-active]="activeId() === link.id" (click)="closeMenuAfterClick()">
+              {{ link.label }} <i class="bi bi-arrow-right" aria-hidden="true"></i>
+            </a>
+          </li>
+        }
+      </ul>
+      <a class="btn btn-primary mobile-menu__cv" [href]="profile.cv" download (click)="closeMenuAfterClick()">
+        <i class="bi bi-download" aria-hidden="true"></i> Download CV
+      </a>
+    </div>
+  }
+</header>

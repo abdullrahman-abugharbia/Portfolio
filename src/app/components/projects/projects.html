@@ -1,48 +1,87 @@
-<section class="projects-section" id="work">
+<section class="section" id="projects" aria-labelledby="projects-title">
   <div class="container">
-    <h2 class="section-title-light">Selected Projects</h2>
-    <div class="section-divider"></div>
+    <header class="section-header projects__header" appReveal>
+      <div>
+        <p class="eyebrow">Projects</p>
+        <h2 class="section-title" id="projects-title">Featured Projects</h2>
+        <p class="section-lead">Work that went live, and the full-stack applications behind my training.</p>
+      </div>
+      <a class="btn btn-secondary btn-sm" [href]="profile.github" target="_blank" rel="noopener">
+        <i class="bi bi-github" aria-hidden="true"></i> More on GitHub
+      </a>
+    </header>
 
-    <div class="row g-4">
-      @for (project of projects; track project.title) {
-        <div class="col-lg-6">
-          <div class="project-card">
-            <!-- Card Header / Preview -->
-            <div class="project-preview"
-              [style.background]="'linear-gradient(135deg, ' + project.gradientFrom + ', ' + project.gradientTo + ')'">
-              <div class="preview-grid"></div>
-              <div class="preview-icon">
-                <i class="bi {{ project.icon }}"></i>
-              </div>
-              <div class="preview-dots">
-                <span></span><span></span><span></span>
-              </div>
-            </div>
-
-            <!-- Card Body -->
-            <div class="project-body">
-              <h3 class="project-title">{{ project.title }}</h3>
-              <p class="project-desc">{{ project.description }}</p>
-
-              <div class="project-tags d-flex flex-wrap gap-2 mt-3">
-                @for (tag of project.tags; track tag) {
-                  <span class="project-tag">{{ tag }}</span>
-                }
-              </div>
-
-              <div class="project-footer d-flex align-items-center justify-content-between mt-4">
-                <span class="stat">
-                  <i class="bi bi-tag"></i> {{ project.label }}
+    <div class="projects">
+      @for (project of projects; track project.title; let odd = $odd) {
+        <article class="project card" [class.project--reverse]="odd" appReveal>
+          <div class="project__media">
+            <div class="browser">
+              <div class="browser__bar" aria-hidden="true">
+                <span class="browser__dots"><i></i><i></i><i></i></span>
+                <span class="browser__url">
+                  <i class="bi bi-lock"></i>
+                  {{ project.link ? host(project.link) : project.title }}
                 </span>
-                @if (project.link) {
-                  <a [href]="project.link" target="_blank" rel="noopener" class="btn-view-project">
-                    Visit Website <i class="bi bi-arrow-right ms-1"></i>
-                  </a>
+              </div>
+              <div class="browser__view">
+                @if (project.image) {
+                  <img [src]="project.image" width="1200" height="750" loading="lazy"
+                    alt="Screenshot of the {{ project.title }} website homepage">
+                } @else {
+                  <div class="placeholder" role="img" [attr.aria-label]="'Illustrative preview of ' + project.title + '; no screenshot available'">
+                    <div class="placeholder__nav"><span></span><span></span><span></span></div>
+                    <div class="placeholder__grid">
+                      @for (n of [1, 2, 3]; track n) {
+                        <div class="placeholder__item"><span></span><span></span><span></span></div>
+                      }
+                    </div>
+                    <div class="placeholder__badge">
+                      <i class="bi {{ project.previewIcon }}" aria-hidden="true"></i>
+                      <span>Illustrative preview</span>
+                    </div>
+                  </div>
                 }
               </div>
             </div>
           </div>
-        </div>
+
+          <div class="project__body">
+            <div class="project__meta">
+              <span class="project__label">{{ project.label }}</span>
+              @if (project.link) {
+                <span class="project__live"><span class="status-dot" aria-hidden="true"></span> Live</span>
+              }
+            </div>
+
+            <h3 class="project__title">
+              {{ project.title }} <span>{{ project.subtitle }}</span>
+            </h3>
+            <p class="project__desc">{{ project.description }}</p>
+            <p class="project__context"><i class="bi bi-person-workspace" aria-hidden="true"></i> {{ project.context }}</p>
+
+            <ul class="tag-list" aria-label="Technologies">
+              @for (tag of project.tags; track tag) {
+                <li class="tag">{{ tag }}</li>
+              }
+            </ul>
+
+            @if (project.link || project.repo) {
+              <div class="project__actions">
+                @if (project.link) {
+                  <a class="btn btn-primary btn-sm" [href]="project.link" target="_blank" rel="noopener">
+                    Visit Website <i class="bi bi-arrow-up-right" aria-hidden="true"></i>
+                    <span class="visually-hidden">(opens {{ project.title }} in a new tab)</span>
+                  </a>
+                }
+                @if (project.repo) {
+                  <a class="btn btn-secondary btn-sm" [href]="project.repo" target="_blank" rel="noopener">
+                    <i class="bi bi-github" aria-hidden="true"></i> GitHub
+                  </a>
+                }
+              </div>
+            }
+          </div>
+        </article>
       }
     </div>
   </div>

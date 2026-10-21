@@ -1,121 +1,53 @@
-<section class="about-section" id="about">
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-12">
-        <h2 class="section-title">About</h2>
-        <div class="section-divider"></div>
-      </div>
-    </div>
+<section class="section" id="about" aria-labelledby="about-title">
+  <div class="container about">
+    <div class="about__text" appReveal>
+      <p class="eyebrow">About me</p>
+      <h2 class="section-title" id="about-title">Building practical software with clean architecture.</h2>
 
-    <div class="row align-items-center g-5">
-      <!-- Profile Image -->
-      <div class="col-lg-4 col-md-5 d-flex justify-content-center">
-        <div class="profile-card">
-          <div class="profile-image-wrapper">
-            <div class="profile-avatar">
-              <img src="profile.webp" alt="Abdullrahman Abugharbia" width="180" height="180">
-            </div>
-            <div class="profile-ring ring-1"></div>
-            <div class="profile-ring ring-2"></div>
-          </div>
-          <div class="profile-info-card mt-4">
-            <div class="info-row">
-              <i class="bi bi-geo-alt-fill"></i>
-              <span>Zarqa, Jordan</span>
-            </div>
-            <div class="info-row">
-              <i class="bi bi-envelope-fill"></i>
-              <span>abdullrahman.abugharbia&#64;gmail.com</span>
-            </div>
-            <div class="info-row">
-              <i class="bi bi-telephone-fill"></i>
-              <span>+962 78 646 2453</span>
-            </div>
-            <div class="info-row">
-              <i class="bi bi-linkedin"></i>
-              <a href="https://www.linkedin.com/in/abdullrahman-abugharbia-2a777235a" target="_blank">LinkedIn Profile</a>
-            </div>
-            <div class="info-row">
-              <i class="bi bi-github"></i>
-              <a href="https://github.com/abdullrahman-abugharbia" target="_blank">GitHub Profile</a>
-            </div>
-            <div class="info-row">
-              <i class="bi bi-translate"></i>
-              <span>Arabic (Native) · English (Intermediate)</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- About Text -->
-      <div class="col-lg-8 col-md-7">
-        <h3 class="about-heading">About Me</h3>
-        <p class="about-body">
+      <div class="about__body">
+        <p>
           I'm a Computer Information Systems graduate from The Hashemite University and an
           ASP.NET Full-Stack Developer, with remote internship experience at max-level-ksa
           in AI-assisted web development and publishing a live website.
         </p>
-        <p class="about-body">
+        <p>
           I work with C#, ASP.NET Core Web API, Angular, SQL Server, Entity Framework Core,
           and LINQ, and I'm familiar with RESTful API development, database-driven
           applications, authentication concepts, and frontend-backend integration. I'm
           looking for an opportunity to contribute to production-oriented web applications
           and keep developing strong software engineering practices.
         </p>
-
-        <!-- Experience -->
-        <h4 class="about-sub-heading mt-4">Experience</h4>
-        <div class="timeline">
-          <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-content">
-              <span class="timeline-date">12 Jul 2026 – 2 Sep 2026</span>
-              <h5 class="timeline-title">Web Development Intern</h5>
-              <p class="timeline-org">
-                max-level-ksa <span class="timeline-note">· Remote</span>
-              </p>
-              <p class="timeline-desc">
-                Contributed to the development and launch of the live
-                <a href="https://www.arppeptide.com/" target="_blank">ARP Peptide</a> website
-                using AI-assisted development workflows, translating requirements and design
-                ideas into a public web experience and reviewing, adjusting, and validating
-                AI-generated output.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Education Timeline -->
-        <h4 class="about-sub-heading mt-4">Education</h4>
-        <div class="timeline">
-          <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-content">
-              <span class="timeline-date">2023 – 2026</span>
-              <h5 class="timeline-title">The Hashemite University</h5>
-              <p class="timeline-desc">Computer Information Systems</p>
-            </div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-content">
-              <span class="timeline-date">2022 – 2023</span>
-              <h5 class="timeline-title">Mutah University</h5>
-              <p class="timeline-desc">Computer Information Systems</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Certification -->
-        <div class="cert-badge mt-4">
-          <i class="bi bi-patch-check-fill cert-icon"></i>
-          <div>
-            <span class="cert-label">Certified</span>
-            <p class="cert-title">Full-Stack Web Development – ASP.NET &amp; Angular</p>
-            <p class="cert-issuer">Consultation and Training Center, Princess Sumaya University for Technology (PSUT)</p>
-          </div>
-        </div>
       </div>
+
+      <dl class="facts">
+        @for (fact of facts; track fact.label) {
+          <div class="fact">
+            <dt><i class="bi {{ fact.icon }}" aria-hidden="true"></i> {{ fact.label }}</dt>
+            <dd>{{ fact.value }}</dd>
+          </div>
+        }
+      </dl>
     </div>
+
+    <aside class="stack-card card" appReveal style="--reveal-delay: 0.1s" aria-labelledby="stack-title">
+      <header class="stack-card__header">
+        <h3 id="stack-title">Tech Stack</h3>
+        <span class="stack-card__meta">Primary</span>
+      </header>
+      <dl class="stack-card__groups">
+        @for (group of stack; track group.label) {
+          <div class="stack-card__group">
+            <dt>{{ group.label }}</dt>
+            <dd>
+              <ul class="tag-list">
+                @for (item of group.items; track item) {
+                  <li class="tag">{{ item }}</li>
+                }
+              </ul>
+            </dd>
+          </div>
+        }
+      </dl>
+    </aside>
   </div>
 </section>

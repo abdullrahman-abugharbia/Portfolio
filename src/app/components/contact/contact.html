@@ -1,0 +1,43 @@
+<section class="section" id="contact" aria-labelledby="contact-title">
+  <div class="container">
+    <div class="contact" appReveal>
+      <div class="contact__bg" aria-hidden="true"></div>
+
+      <div class="contact__intro">
+        <p class="eyebrow">Contact</p>
+        <h2 class="section-title" id="contact-title">Have a project in mind?</h2>
+        <p class="section-lead">
+          I'm looking for an opportunity to contribute to production-oriented web applications.
+          Send me an email or connect on LinkedIn — I'd be glad to talk.
+        </p>
+        <div class="contact__actions">
+          <a class="btn btn-primary" [href]="'mailto:' + profile.email">
+            <i class="bi bi-envelope" aria-hidden="true"></i> Send an Email
+          </a>
+          <a class="btn btn-secondary" [href]="profile.cv" download>
+            <i class="bi bi-download" aria-hidden="true"></i> Download CV
+          </a>
+        </div>
+        <p class="contact__location">
+          <i class="bi bi-geo-alt" aria-hidden="true"></i> Based in {{ profile.location }}
+        </p>
+      </div>
+
+      <ul class="channels">
+        @for (c of channels; track c.label) {
+          <li>
+            <a class="channel" [href]="c.href" [attr.target]="c.external ? '_blank' : null"
+              [attr.rel]="c.external ? 'noopener' : null">
+              <span class="icon-box"><i class="bi {{ c.icon }}" aria-hidden="true"></i></span>
+              <span class="channel__text">
+                <span class="channel__label">{{ c.label }}</span>
+                <span class="channel__value">{{ c.value }}</span>
+              </span>
+              <i class="bi bi-arrow-up-right channel__arrow" aria-hidden="true"></i>
+            </a>
+          </li>
+        }
+      </ul>
+    </div>
+  </div>
+</section>
